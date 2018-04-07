@@ -1,0 +1,13 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (tcp 连接客户端.vcxproj, tcp连接客户端.vcxproj, 中腾科技tcp协议客户端.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  tcp客户端.cpp
+e:\c++\tcp 连接客户端\tcp 连接客户端\tcp客户端.cpp(52): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850): note: 参见“inet_addr”的声明
+e:\c++\tcp 连接客户端\tcp 连接客户端\tcp客户端.cpp(107): warning C4101: “buff”: 未引用的局部变量
+  正在生成代码...
+  正在跳过...(未检测到相关更改)
+  main.cpp
+  json_writer.cpp
+  json_value.cpp
+  json_reader.cpp
+  tcp 连接客户端.vcxproj -> E:\c++\tcp 连接客户端\Debug\tcp协议中腾科技科教设备客户端.exe
+  tcp 连接客户端.vcxproj -> E:\c++\tcp 连接客户端\Debug\tcp协议中腾科技科教设备客户端.pdb (Partial PDB)
