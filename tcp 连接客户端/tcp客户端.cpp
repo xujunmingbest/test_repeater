@@ -86,11 +86,13 @@ void handleSend(string src_mac, string des_mac){
 		snprintf(Headbuff, 5, "%d", s.length());
 		string lh(Headbuff, 4);
 		char buffs[1000];
+		snprintf(buffs, 30, "%s", "ÄãºÃwojiao Ðì¾üÃ÷");
+		/*
 		memset(buffs, 0x00, 1000);
 		memset(buffs, 'a', 300);
 		memset(buffs+300, 'b', 300);
-		memset(buffs+600, 'c', 399);
-		string bb(buffs);
+		memset(buffs+600, 'c', 399);*/
+		string bb(buffs,strlen(buffs));
 		memset(Bodybuff, 0x00, 9);
 		snprintf(Bodybuff, 9, "%d", bb.length());
 		string lb(Bodybuff, 8);
@@ -104,18 +106,60 @@ void handleSend(string src_mac, string des_mac){
 
 string R(int rl);
 
+
+string U2G(const char* utf8)
+{
+	int len = MultiByteToWideChar(CP_UTF8, 0, utf8, -1, NULL, 0);
+	wchar_t* wstr = new wchar_t[len + 1];
+	wmemset(wstr, 0, len + 1);
+	MultiByteToWideChar(CP_UTF8, 0, utf8, -1, wstr, len);
+	len = WideCharToMultiByte(CP_ACP, 0, wstr, -1, NULL, 0, NULL, NULL);
+	char* str = new char[len + 1];
+	memset(str, 0, len + 1);
+	WideCharToMultiByte(CP_ACP, 0, wstr, -1, str, len, NULL, NULL);
+	if (wstr) delete[] wstr;
+	string r(str, len);
+	delete[] str;
+	return r;
+}
+
+/*
+string GBKToUTF8(const string& strGBK)
+{
+	string strOutUTF8 = "";
+	WCHAR * str1;
+	int n = MultiByteToWideChar(CP_ACP, 0, strGBK.c_str(), -1, NULL, 0);
+	str1 = new WCHAR[n];
+	MultiByteToWideChar(CP_ACP, 0, strGBK.c_str(), -1, str1, n);
+	n = WideCharToMultiByte(CP_UTF8, 0, str1, -1, NULL, 0, NULL, NULL);
+	char * str2 = new char[n];
+	WideCharToMultiByte(CP_UTF8, 0, str1, -1, str2, n, NULL, NULL);
+	strOutUTF8 = str2;
+	delete[]str1;
+	str1 = NULL;
+	delete[]str2;
+	str2 = NULL;
+	return strOutUTF8;
+}
+
+*/
+
+
 void handleRecv() {
 	char buff[1000];
 
 	while (1) {
 		string lh = R(4);
-		cout << " " << lh << endl;
+		cout << "lh:" << lh << endl;
 		string lb = R(8);
-		cout << " " << lh << endl;
+		cout << "lb:" << lh << endl;
 		string head = R(atoi(lh.c_str()));
-		cout << " " << head << endl;
+
+		string a= U2G(head.c_str());
+		cout << U2G(head.c_str()).c_str() << endl;
+		cout << "head:" << a.c_str() << endl;
 		string body = R(atoi(lb.c_str()));
-		cout << " " << body << endl;
+		cout << "body:" << body.c_str() << endl;
 	}
 }
 
